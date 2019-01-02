@@ -6,11 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.lucianpiros.bakingapp.R;
+import com.lucianpiros.bakingapp.data.adapters.RecipiesAdapter;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
+
+import java.util.ArrayList;
 
 public class RecipiesFragment extends Fragment {
 
@@ -37,7 +39,9 @@ public class RecipiesFragment extends Fragment {
         return rootView;
     }
 
-    public void updateRecipies(ArrayAdapter<Recipe> recipiesAdapter) {
+    public void updateRecipies(ArrayList<Recipe> recipiesList) {
+
+        RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), recipiesList);
         recipiesLis.setAdapter(recipiesAdapter);
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lucianpiros.bakingapp.R;
-import com.lucianpiros.bakingapp.data.adapters.RecipiesAdapter;
 import com.lucianpiros.bakingapp.data.retrofit.RecipeInterface;
 import com.lucianpiros.bakingapp.data.retrofit.RetrofitClient;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
@@ -37,11 +36,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                 ArrayList<Recipe> recipiesList = response.body();
-                RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getApplicationContext(), recipiesList);
 
                 RecipiesFragment articleFrag = (RecipiesFragment)
                         getSupportFragmentManager().findFragmentById(R.id.fragment_recipieslist);
-                articleFrag.updateRecipies(recipiesAdapter);
+                articleFrag.updateRecipies(recipiesList);
             }
 
             @Override
