@@ -1,6 +1,6 @@
-package com.lucianpiros.bakingapp.retrofit;
+package com.lucianpiros.bakingapp.data.retrofit;
 
-import com.lucianpiros.bakingapp.retrofit.pojo.Recipe;
+import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 

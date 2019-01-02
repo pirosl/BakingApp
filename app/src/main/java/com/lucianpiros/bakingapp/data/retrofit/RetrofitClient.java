@@ -1,4 +1,4 @@
-package com.lucianpiros.bakingapp.retrofit;
+package com.lucianpiros.bakingapp.data.retrofit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

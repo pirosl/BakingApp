@@ -1,12 +1,13 @@
-package com.lucianpiros.bakingapp;
+package com.lucianpiros.bakingapp.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.lucianpiros.bakingapp.retrofit.RecipeInterface;
-import com.lucianpiros.bakingapp.retrofit.RetrofitClient;
-import com.lucianpiros.bakingapp.retrofit.pojo.Recipe;
+import com.lucianpiros.bakingapp.R;
+import com.lucianpiros.bakingapp.data.adapters.RecipiesAdapter;
+import com.lucianpiros.bakingapp.data.retrofit.RecipeInterface;
+import com.lucianpiros.bakingapp.data.retrofit.RetrofitClient;
+import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
@@ -35,9 +36,12 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                for(Recipe r : response.body()) {
-                    Log.d(TAG, r.getId() + " " + r.getName() + "\n");
-                }
+                ArrayList<Recipe> recipiesList = response.body();
+                RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getApplicationContext(), recipiesList);
+
+                RecipiesFragment articleFrag = (RecipiesFragment)
+                        getSupportFragmentManager().findFragmentById(R.id.fragment_recipieslist);
+                articleFrag.updateRecipies(recipiesAdapter);
             }
 
             @Override
