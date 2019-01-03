@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Style to be used on ImageView -->
+    <style name="ImageView">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <!-- Style to be used on recipe title -->
+    <style name="Title" parent="@android:style/TextAppearance.Large.Inverse">
+        <item name="android:gravity">bottom</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">@dimen/layout_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/layout_horizontal_padding</item>
+        <item name="android:paddingBottom">@dimen/layout_vertical_padding</item>
+    </style>
 </resources>

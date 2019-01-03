@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lucianpiros.bakingapp.R;
@@ -30,9 +31,19 @@ public class RecipiesAdapter extends ArrayAdapter<Recipe> {
 
         // Lookup view for data population
         TextView recipeNameTV = (TextView) convertView.findViewById(R.id.recipename);
+        ImageView recipeImageIV = (ImageView) convertView.findViewById(R.id.recipeimage);
 
         // Populate the data into the template view using the data object
         recipeNameTV.setText(recipe.getName());
+
+        if(recipe.getImage().isEmpty()) {
+            if(recipe.getId() % 2 == 0) {
+                recipeImageIV.setImageResource(R.drawable.placeholder_1);
+            }
+            else {
+                recipeImageIV.setImageResource(R.drawable.placeholder_2);
+            }
+        }
 
         // Return the completed view to render on screen
         return convertView;

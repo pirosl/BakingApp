@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class RecipiesFragment extends Fragment {
 
     //@BindView(R.id.recipieslist)
-    private ListView recipiesLis;
+    private ListView recipiesListView;
 
     public RecipiesFragment() {
     }
@@ -34,7 +34,7 @@ public class RecipiesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.recipies_fragment, container, false);
 
        // ButterKnife.bind(this, rootView);
-        recipiesLis = (ListView) rootView.findViewById(R.id.recipieslist);
+        recipiesListView = (ListView) rootView.findViewById(R.id.recipieslist);
 
         return rootView;
     }
@@ -42,6 +42,6 @@ public class RecipiesFragment extends Fragment {
     public void updateRecipies(ArrayList<Recipe> recipiesList) {
 
         RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), recipiesList);
-        recipiesLis.setAdapter(recipiesAdapter);
+        recipiesListView.setAdapter(recipiesAdapter);
     }
 }
