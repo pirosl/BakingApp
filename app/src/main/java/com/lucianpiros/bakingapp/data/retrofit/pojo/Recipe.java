@@ -9,6 +9,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.List;
 
+/**
+ * POJO object for Recipe
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class Recipe {
 
     @SerializedName("id")

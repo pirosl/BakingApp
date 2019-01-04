@@ -9,6 +9,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Recipies retrive service.
+ * Build on top of Retrofit. Once list is retried, DataUpdateListener is updated
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipesRetrieveService {
     private final static String RECIPIES_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
 

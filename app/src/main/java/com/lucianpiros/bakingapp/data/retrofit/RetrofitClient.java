@@ -6,6 +6,12 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Retrofit client.
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RetrofitClient {
 
     /**

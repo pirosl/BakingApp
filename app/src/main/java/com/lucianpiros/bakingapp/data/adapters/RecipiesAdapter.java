@@ -13,6 +13,12 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
+/**
+ * Recipe adapter. Used in RecipiedFragment class
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipiesAdapter extends ArrayAdapter<Recipe> {
 
     public RecipiesAdapter(Context context, ArrayList<Recipe> objects) {

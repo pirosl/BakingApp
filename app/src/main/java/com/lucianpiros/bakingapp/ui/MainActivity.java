@@ -6,6 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.retrofit.RecipesRetrieveService;
 
+/**
+ * Main activity class
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();

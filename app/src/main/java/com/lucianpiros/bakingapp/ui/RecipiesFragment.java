@@ -15,6 +15,12 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
+/**
+ * Recipies fragment. Displays a list of recipies.
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipiesFragment extends Fragment implements DataUpdateListener<ArrayList<Recipe>> {
 
     //@BindView(R.id.recipieslist)
