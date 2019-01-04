@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.lucianpiros.bakingapp.R;
+import com.lucianpiros.bakingapp.data.DataUpdateListener;
 import com.lucianpiros.bakingapp.data.adapters.RecipiesAdapter;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
-public class RecipiesFragment extends Fragment {
+public class RecipiesFragment extends Fragment implements DataUpdateListener<ArrayList<Recipe>> {
 
     //@BindView(R.id.recipieslist)
     private ListView recipiesListView;
@@ -39,7 +40,7 @@ public class RecipiesFragment extends Fragment {
         return rootView;
     }
 
-    public void updateRecipies(ArrayList<Recipe> recipiesList) {
+    public void updateData(ArrayList<Recipe> recipiesList) {
 
         RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), recipiesList);
         recipiesListView.setAdapter(recipiesAdapter);
