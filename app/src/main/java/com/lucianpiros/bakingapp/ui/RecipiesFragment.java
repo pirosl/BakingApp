@@ -15,6 +15,9 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Recipies fragment. Displays a list of recipies.
  *
@@ -23,8 +26,8 @@ import java.util.ArrayList;
  */
 public class RecipiesFragment extends Fragment implements DataUpdateListener<ArrayList<Recipe>> {
 
-    //@BindView(R.id.recipieslist)
-    private ListView recipiesListView;
+    @BindView(R.id.recipieslist)
+    ListView recipiesListView;
 
     public RecipiesFragment() {
     }
@@ -40,8 +43,7 @@ public class RecipiesFragment extends Fragment implements DataUpdateListener<Arr
 
         View rootView = inflater.inflate(R.layout.recipies_fragment, container, false);
 
-       // ButterKnife.bind(this, rootView);
-        recipiesListView = (ListView) rootView.findViewById(R.id.recipieslist);
+        ButterKnife.bind(this, rootView);
 
         return rootView;
     }
