@@ -5,6 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.lucianpiros.bakingapp.R;
 
+/**
+ * Recipies activity. Embeed recipe fragment
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipeActivity extends AppCompatActivity {
     private final String LOG_TAG = RecipeActivity.class.getSimpleName();
 

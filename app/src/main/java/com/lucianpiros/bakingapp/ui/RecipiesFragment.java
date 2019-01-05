@@ -2,6 +2,7 @@ package com.lucianpiros.bakingapp.ui;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class RecipiesFragment extends Fragment implements DataUpdateListener<Arr
         super.onCreate(savedInstanceState);
     }
 
+    @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

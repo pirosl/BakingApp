@@ -10,6 +10,13 @@ import android.widget.TextView;
 
 import com.lucianpiros.bakingapp.R;
 
+/**
+ * Recipe fragment. Displays a tabbed form
+ * containing ingredients and recipe steps
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipeFragment extends Fragment {
 
     @NonNull
