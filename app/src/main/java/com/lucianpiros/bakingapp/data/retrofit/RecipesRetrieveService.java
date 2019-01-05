@@ -1,6 +1,7 @@
 package com.lucianpiros.bakingapp.data.retrofit;
 
 import com.lucianpiros.bakingapp.data.DataUpdateListener;
+import com.lucianpiros.bakingapp.data.RecipiesHolder;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ import retrofit2.Response;
 public class RecipesRetrieveService {
     private final static String RECIPIES_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
 
-    private DataUpdateListener<ArrayList<Recipe> > dataUpdateListener;
+    private DataUpdateListener dataUpdateListener;
 
-    public RecipesRetrieveService(DataUpdateListener<ArrayList<Recipe> > dataUpdateListener) {
+    public RecipesRetrieveService(DataUpdateListener dataUpdateListener) {
         this.dataUpdateListener = dataUpdateListener;
     }
 
@@ -39,7 +40,8 @@ public class RecipesRetrieveService {
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                 ArrayList<Recipe> recipiesList = response.body();
 
-                dataUpdateListener.updateData(recipiesList);
+                RecipiesHolder.getInstance().storeRecipies(recipiesList);
+                dataUpdateListener.updateData();
             }
 
             @Override

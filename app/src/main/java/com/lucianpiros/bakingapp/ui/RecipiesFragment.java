@@ -11,10 +11,8 @@ import android.widget.ListView;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.DataUpdateListener;
+import com.lucianpiros.bakingapp.data.RecipiesHolder;
 import com.lucianpiros.bakingapp.data.adapters.RecipiesAdapter;
-import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +23,7 @@ import butterknife.ButterKnife;
  * @author Lucian Piros
  * @version 1.0
  */
-public class RecipiesFragment extends Fragment implements DataUpdateListener<ArrayList<Recipe>> {
+public class RecipiesFragment extends Fragment implements DataUpdateListener {
 
     @BindView(R.id.recipieslist)
     ListView recipiesListView;
@@ -50,9 +48,8 @@ public class RecipiesFragment extends Fragment implements DataUpdateListener<Arr
         return rootView;
     }
 
-    public void updateData(ArrayList<Recipe> recipiesList) {
-
-        RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), recipiesList);
+    public void updateData() {
+        RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), RecipiesHolder.getInstance().getRecipiesList());
         recipiesListView.setAdapter(recipiesAdapter);
     }
 }

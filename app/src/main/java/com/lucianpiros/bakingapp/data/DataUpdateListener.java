@@ -7,6 +7,6 @@ package com.lucianpiros.bakingapp.data;
  * @author Lucian Piros
  * @version 1.0
  */
-public interface DataUpdateListener<ArrayType> {
-    public void updateData(ArrayType array);
+public interface DataUpdateListener {
+    public void updateData();
 }
