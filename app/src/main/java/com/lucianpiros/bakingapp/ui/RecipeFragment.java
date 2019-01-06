@@ -19,6 +19,8 @@ import com.lucianpiros.bakingapp.R;
  */
 public class RecipeFragment extends Fragment {
 
+    public static final String RECIPE_IDX = "recipeidx";
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -26,8 +28,6 @@ public class RecipeFragment extends Fragment {
 
         View detailsView = inflater.inflate(R.layout.recipe_fragment, container, false);
         TextView tv = (TextView)detailsView.findViewById(R.id.test);
-
-        tv.setText("This is a test");
 
         return detailsView;
     }
