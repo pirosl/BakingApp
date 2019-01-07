@@ -9,12 +9,16 @@
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed" />
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="center"
+        app:tabTextColor="@android:color/primary_text_dark"
+        style="@style/TabTheme" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </LinearLayout>

@@ -36,7 +36,7 @@ public class RecipeFragment extends Fragment {
         ViewPager viewPager = (ViewPager) detailsView.findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        RecipeFragmentPagerAdapter adapter = new RecipeFragmentPagerAdapter(getContext(), getFragmentManager());
+        RecipeFragmentPagerAdapter adapter = new RecipeFragmentPagerAdapter(detailsView.getContext(), getChildFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
@@ -44,6 +44,7 @@ public class RecipeFragment extends Fragment {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) detailsView.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         return detailsView;
     }
