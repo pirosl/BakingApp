@@ -14,7 +14,7 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 import java.util.ArrayList;
 
 /**
- * Recipe adapter. Used in RecipiedFragment class
+ * Recipe adapter. Used in RecipiesFragment class
  *
  * @author Lucian Piros
  * @version 1.0
