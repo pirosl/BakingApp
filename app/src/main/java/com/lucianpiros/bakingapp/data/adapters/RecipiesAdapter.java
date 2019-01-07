@@ -13,6 +13,9 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Recipe adapter. Used in RecipiesFragment class
  *
@@ -20,6 +23,13 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class RecipiesAdapter extends ArrayAdapter<Recipe> {
+
+    @BindView(R.id.recipename)
+    TextView recipeNameTV;
+
+    @BindView(R.id.recipeimage)
+    ImageView recipeImageIV;
+
 
     public RecipiesAdapter(Context context, ArrayList<Recipe> objects) {
         super(context, 0, objects);
@@ -35,9 +45,7 @@ public class RecipiesAdapter extends ArrayAdapter<Recipe> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.recipe_row, parent, false);
         }
 
-        // Lookup view for data population
-        TextView recipeNameTV = (TextView) convertView.findViewById(R.id.recipename);
-        ImageView recipeImageIV = (ImageView) convertView.findViewById(R.id.recipeimage);
+        ButterKnife.bind(this, convertView);
 
         // Populate the data into the template view using the data object
         recipeNameTV.setText(recipe.getName());
