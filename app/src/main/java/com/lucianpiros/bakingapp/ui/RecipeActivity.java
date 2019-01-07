@@ -23,17 +23,16 @@ public class RecipeActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
 
-            // Retrieve movie passed as parameter from Main Activity
-/*            Bundle bundle = getIntent().getExtras();
-            Uri movieUri = bundle.getParcelable(getResources()
+            // Retrieve recipe idx passed as parameter from Main Activity
+            Bundle bundle = getIntent().getExtras();
+            int recipeIdx = bundle.getInt(getResources()
                     .getString(R.string.activity_extra_param));
 
             Bundle arguments = new Bundle();
-            arguments.putParcelable(MovieDetailsFragment.DETAIL_MOVIE, movieUri);
-*/
+            arguments.putInt(RecipeFragment.RECIPE_IDX, recipeIdx);
 
             RecipeFragment fragment = new RecipeFragment();
-          //  fragment.setArguments(arguments);
+            fragment.setArguments(arguments);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_recipe, fragment)
