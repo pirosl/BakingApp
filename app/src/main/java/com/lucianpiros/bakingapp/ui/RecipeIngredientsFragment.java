@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.lucianpiros.bakingapp.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.lucianpiros.bakingapp.data.RecipiesHolder;
+import com.lucianpiros.bakingapp.data.adapters.RecipeIngredientsAdapter;
 
 /**
  * Recipe ingredients fragment. Displays recipe ingredients
@@ -21,8 +20,8 @@ import butterknife.ButterKnife;
  */
 public class RecipeIngredientsFragment extends Fragment {
 
-    @BindView(R.id.recipieingredientslist)
-    ListView recipieIngredientsListView;
+  //  @BindView(R.id.recipeingredientslist)
+    ListView recipeIngredientsListView;
 
     public RecipeIngredientsFragment() {
 
@@ -35,7 +34,14 @@ public class RecipeIngredientsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.recipe_ingredients_fragment, container, false);
 
-        ButterKnife.bind(rootView);
+        Bundle bundle = getArguments();
+        int recipeIdx = bundle.getInt(getResources()
+                .getString(R.string.activity_extra_param));
+
+      //  ButterKnife.bind(rootView);
+        recipeIngredientsListView = rootView.findViewById(R.id.recipeingredientslist);
+        RecipeIngredientsAdapter recipeIngredientsAdapter = new RecipeIngredientsAdapter(getContext(), RecipiesHolder.getInstance().getRecipeIngredients(recipeIdx));
+        recipeIngredientsListView.setAdapter(recipeIngredientsAdapter);
 
         return rootView;
     }

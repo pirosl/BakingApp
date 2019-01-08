@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#7f0000</color>
     <color name="colorPrimaryChild">#116e6e</color>
     <color name="colorAccent">#7bab1a</color>
+    <color name="textColor">@android:color/primary_text_light</color>
 </resources>

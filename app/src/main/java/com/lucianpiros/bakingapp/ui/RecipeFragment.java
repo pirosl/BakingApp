@@ -35,8 +35,16 @@ public class RecipeFragment extends Fragment {
 
         ViewPager viewPager = (ViewPager) detailsView.findViewById(R.id.viewpager);
 
+        // Retrieve recipe idx passed as parameter from Main Activity
+        Bundle bundle = getArguments();
+
+        int recipeIdx = -1;
+        if(bundle != null)
+            recipeIdx = bundle.getInt(getResources()
+                .getString(R.string.activity_extra_param));
+
         // Create an adapter that knows which fragment should be shown on each page
-        RecipeFragmentPagerAdapter adapter = new RecipeFragmentPagerAdapter(detailsView.getContext(), getChildFragmentManager());
+        RecipeFragmentPagerAdapter adapter = new RecipeFragmentPagerAdapter(detailsView.getContext(), getChildFragmentManager(), recipeIdx);
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
@@ -52,18 +60,26 @@ public class RecipeFragment extends Fragment {
     class RecipeFragmentPagerAdapter extends FragmentPagerAdapter {
 
         private Context mContext;
+        private int mRecipeIdx;
 
-        public RecipeFragmentPagerAdapter(Context context, FragmentManager fm) {
+        public RecipeFragmentPagerAdapter(Context context, FragmentManager fm, int recipeIdx) {
             super(fm);
             mContext = context;
+            mRecipeIdx = recipeIdx;
         }
 
         // This determines the fragment for each tab
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new RecipeIngredientsFragment();
-            } else if (position == 1){
+                Bundle arguments = new Bundle();
+                arguments.putInt(RecipeFragment.RECIPE_IDX, mRecipeIdx);
+                RecipeIngredientsFragment fragment = new RecipeIngredientsFragment();
+                fragment.setArguments(arguments);
+
+                return fragment;
+
+            } else if (position == 1) {
                 return new RecipeStepsFragment();
             }
             return null;
