@@ -3,4 +3,6 @@
 
     <!-- Value used to pass movie as parameter from Main Activity to Recipe Activity -->
     <string name="activity_extra_param" translatable="false">recipeidx</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
