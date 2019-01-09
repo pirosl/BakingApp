@@ -1,6 +1,5 @@
 package com.lucianpiros.bakingapp.ui;
 
-import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

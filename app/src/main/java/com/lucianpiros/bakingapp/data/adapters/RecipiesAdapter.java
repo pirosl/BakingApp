@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 import com.lucianpiros.bakingapp.ui.OnItemSelectedListener;
-import com.lucianpiros.bakingapp.ui.RecipiesFragment;
 
 import java.util.List;
 

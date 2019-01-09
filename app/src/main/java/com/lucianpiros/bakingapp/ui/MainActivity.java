@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.retrofit.RecipesRetrieveService;
 
-import butterknife.OnItemSelected;
-
 /**
  * Main activity class
  *
