@@ -32,18 +32,15 @@ public class RecipiesHolder {
         return recipiesList.get(position);
     }
 
-    public ArrayList<Ingredient> getRecipeIngredients(int recipeIdx) {
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+    public List<Ingredient> getRecipeIngredients(int recipeIdx) {
         if(recipeIdx >= 0) {
             for (Recipe recipe : recipiesList) {
                 if (recipe.getId() == recipeIdx) {
-                    ingredients = new ArrayList<>();
-                    ingredients.addAll(recipe.getIngredients());
-                    return ingredients;
+                    return recipe.getIngredients();
                 }
             }
         }
-        return ingredients;
+        return new ArrayList<>();
     }
 
     public ArrayList<Step> getRecipeSteps(int recipeIdx) {
