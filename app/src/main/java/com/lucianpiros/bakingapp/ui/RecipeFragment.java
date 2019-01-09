@@ -71,16 +71,20 @@ public class RecipeFragment extends Fragment {
         // This determines the fragment for each tab
         @Override
         public Fragment getItem(int position) {
+            Bundle arguments = new Bundle();
+            arguments.putInt(RecipeFragment.RECIPE_IDX, mRecipeIdx);
+
             if (position == 0) {
-                Bundle arguments = new Bundle();
-                arguments.putInt(RecipeFragment.RECIPE_IDX, mRecipeIdx);
                 RecipeIngredientsFragment fragment = new RecipeIngredientsFragment();
                 fragment.setArguments(arguments);
 
                 return fragment;
 
             } else if (position == 1) {
-                return new RecipeStepsFragment();
+                RecipeStepsFragment fragment = new RecipeStepsFragment();
+                fragment.setArguments(arguments);
+
+                return fragment;
             }
             return null;
         }

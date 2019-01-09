@@ -47,5 +47,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:9.0.0-rc3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc3'
 
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.3'
+
     testImplementation 'junit:junit:4.12'
 }
