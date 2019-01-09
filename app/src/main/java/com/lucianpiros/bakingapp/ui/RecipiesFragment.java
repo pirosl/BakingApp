@@ -4,6 +4,9 @@ package com.lucianpiros.bakingapp.ui;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,22 +29,9 @@ import butterknife.OnItemClick;
  * @author Lucian Piros
  * @version 1.0
  */
-public class RecipiesFragment extends Fragment implements DataUpdateListener {
+public class RecipiesFragment extends Fragment implements DataUpdateListener, OnItemSelectedListener {
 
-    @BindView(R.id.recipieslist)
-    ListView recipiesListView;
-
-    /**
-     * A callback interface that all activities containing this fragment must
-     * implement. This mechanism allows activities to be notified of item
-     * selections.
-     */
-    public interface Callback {
-        /**
-         * When an item has been selected - notify up.
-         */
-        void onItemSelected(int itemIdx);
-    }
+    RecyclerView recipiesListView;
 
     public RecipiesFragment() {
     }
@@ -58,19 +48,22 @@ public class RecipiesFragment extends Fragment implements DataUpdateListener {
 
         View rootView = inflater.inflate(R.layout.recipies_fragment, container, false);
 
-        ButterKnife.bind(this, rootView);
+        recipiesListView = rootView.findViewById(R.id.recipiesrecyclerview);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(rootView.getContext());
+        recipiesListView.setLayoutManager(mLayoutManager);
+        recipiesListView.setItemAnimator(new DefaultItemAnimator());
 
         return rootView;
     }
 
-    @OnItemClick(R.id.recipieslist)
-    public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-        Recipe recipe = (Recipe) parent.getItemAtPosition(position);
-        ((Callback)getActivity()).onItemSelected(recipe.getId());
+    public void onItemSelected(int position) {
+        Recipe recipe = RecipiesHolder.getInstance().getRecipeAtPosition(position);
+        ((OnItemSelectedListener)getActivity()).onItemSelected(recipe.getId());
     }
 
     public void updateData() {
-        RecipiesAdapter recipiesAdapter = new RecipiesAdapter(getContext(), RecipiesHolder.getInstance().getRecipiesList());
+        RecipiesAdapter recipiesAdapter = new RecipiesAdapter(RecipiesHolder.getInstance().getRecipiesList(), this);
         recipiesListView.setAdapter(recipiesAdapter);
     }
 }

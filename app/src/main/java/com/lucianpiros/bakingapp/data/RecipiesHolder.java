@@ -5,11 +5,12 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Step;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecipiesHolder {
     private static final RecipiesHolder recipiesHolder = new RecipiesHolder();
 
-    private ArrayList<Recipe> recipiesList;
+    private List<Recipe> recipiesList;
 
     private RecipiesHolder() {
 
@@ -23,8 +24,12 @@ public class RecipiesHolder {
         this.recipiesList = recipiesList;
     }
 
-    public ArrayList<Recipe> getRecipiesList() {
+    public List<Recipe> getRecipiesList() {
         return recipiesList;
+    }
+
+    public Recipe getRecipeAtPosition(int position) {
+        return recipiesList.get(position);
     }
 
     public ArrayList<Ingredient> getRecipeIngredients(int recipeIdx) {

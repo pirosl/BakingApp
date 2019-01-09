@@ -1,20 +1,18 @@
 package com.lucianpiros.bakingapp.data.adapters;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
+import com.lucianpiros.bakingapp.ui.OnItemSelectedListener;
+import com.lucianpiros.bakingapp.ui.RecipiesFragment;
 
-import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.List;
 
 /**
  * Recipe adapter. Used in RecipiesFragment class
@@ -22,44 +20,59 @@ import butterknife.ButterKnife;
  * @author Lucian Piros
  * @version 1.0
  */
-public class RecipiesAdapter extends ArrayAdapter<Recipe> {
+public class RecipiesAdapter extends RecyclerView.Adapter<RecipiesAdapter.ViewHolder> {
 
-    @BindView(R.id.recipename)
-    TextView recipeNameTV;
+    private List<Recipe> recipiesList;
+    private OnItemSelectedListener onItemSelectedListener;
 
-    @BindView(R.id.recipeimage)
-    ImageView recipeImageIV;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView recipeNameTV;
+        public ImageView recipeImageIV;;
 
+        public ViewHolder(View view) {
+            super(view);
+            recipeNameTV = view.findViewById(R.id.recipename);
+            recipeImageIV = view.findViewById(R.id.recipeimage);
+            itemView.setOnClickListener(this);
+        }
 
-    public RecipiesAdapter(Context context, ArrayList<Recipe> objects) {
-        super(context, 0, objects);
+        @Override
+        public void onClick(View view) {
+            onItemSelectedListener.onItemSelected(getAdapterPosition()); // call the onClick in the OnItemSelectedListener
+        }
+    }
+
+    public RecipiesAdapter(List<Recipe> recipiesList, OnItemSelectedListener onItemSelectedListener) {
+        this.recipiesList = recipiesList;
+        this.onItemSelectedListener = onItemSelectedListener;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        Recipe recipe = getItem(position);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recipe_row, parent, false);
 
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.recipe_row, parent, false);
-        }
+        return new ViewHolder(itemView);
+    }
 
-        ButterKnife.bind(this, convertView);
-
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Recipe recipe = recipiesList.get(position);
         // Populate the data into the template view using the data object
-        recipeNameTV.setText(recipe.getName());
+        holder.recipeNameTV.setText(recipe.getName());
 
         if(recipe.getImage().isEmpty()) {
             if(recipe.getId() % 2 == 0) {
-                recipeImageIV.setImageResource(R.drawable.placeholder_1);
+                holder.recipeImageIV.setImageResource(R.drawable.placeholder_1);
             }
             else {
-                recipeImageIV.setImageResource(R.drawable.placeholder_2);
+                holder.recipeImageIV.setImageResource(R.drawable.placeholder_2);
             }
         }
+    }
 
-        // Return the completed view to render on screen
-        return convertView;
+    @Override
+    public int getItemCount() {
+        return recipiesList.size();
     }
 }
