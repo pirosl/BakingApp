@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     xmlns:design="http://schemas.android.com/apk/res-auto" >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/navigation" >
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/video_view"
