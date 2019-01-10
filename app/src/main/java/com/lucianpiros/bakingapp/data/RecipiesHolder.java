@@ -7,9 +7,16 @@ import com.lucianpiros.bakingapp.data.retrofit.pojo.Step;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Singleton class used to temporarly store recipies
+ *
+ * @author Lucian Piros
+ * @version 1.0
+ */
 public class RecipiesHolder {
     private static final RecipiesHolder recipiesHolder = new RecipiesHolder();
 
+    // Recipies list
     private List<Recipe> recipiesList;
 
     private RecipiesHolder() {
@@ -20,18 +27,36 @@ public class RecipiesHolder {
         return recipiesHolder;
     }
 
+    /**
+     * Save recipies list
+     * @param recipiesList
+     */
     public void storeRecipies(ArrayList<Recipe> recipiesList) {
         this.recipiesList = recipiesList;
     }
 
+    /**
+     * Retrieve recipies list
+     * @return
+     */
     public List<Recipe> getRecipiesList() {
         return recipiesList;
     }
 
+    /**
+     * Get recipe at given position
+     * @param position
+     * @return
+     */
     public Recipe getRecipeAtPosition(int position) {
         return recipiesList.get(position);
     }
 
+    /**
+     * Retrieve ingredients for a given recipe
+     * @param recipeIdx
+     * @return
+     */
     public List<Ingredient> getRecipeIngredients(int recipeIdx) {
         if(recipeIdx >= 0) {
             for (Recipe recipe : recipiesList) {
@@ -43,6 +68,11 @@ public class RecipiesHolder {
         return new ArrayList<>();
     }
 
+    /**
+     * Retrieve steps for a given recipe
+     * @param recipeIdx
+     * @return
+     */
     public ArrayList<Step> getRecipeSteps(int recipeIdx) {
         ArrayList<Step> ingredients = new ArrayList<>();
         if(recipeIdx >= 0) {

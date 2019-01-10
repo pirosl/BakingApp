@@ -21,9 +21,15 @@ import java.util.List;
  */
 public class RecipiesAdapter extends RecyclerView.Adapter<RecipiesAdapter.ViewHolder> {
 
+    // Recipies list
     private List<Recipe> recipiesList;
+
+    // OnItemSelectedListener
     private OnItemSelectedListener onItemSelectedListener;
 
+    /**
+     * ViewHolder implementation
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView recipeNameTV;
         public ImageView recipeImageIV;;
@@ -41,6 +47,11 @@ public class RecipiesAdapter extends RecyclerView.Adapter<RecipiesAdapter.ViewHo
         }
     }
 
+    /**
+     * Class constructor
+     * @param recipiesList
+     * @param onItemSelectedListener
+     */
     public RecipiesAdapter(List<Recipe> recipiesList, OnItemSelectedListener onItemSelectedListener) {
         this.recipiesList = recipiesList;
         this.onItemSelectedListener = onItemSelectedListener;

@@ -25,8 +25,10 @@ import java.util.Map;
  */
 public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredientsAdapter.ViewHolder> {
 
+    // Collection of recipe ingredients to be displayed through this adapted
     private List<Ingredient> recipeIngredientsList;
 
+    // Map used to beatify recipe ingredients display
     private static final Map<String, String> meassureMap;
     static
     {
@@ -38,6 +40,9 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         meassureMap.put("CUP", "cup");
     }
 
+    /**
+     * ViewHolder implementation
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView recipeIngredientNameTV;
 
@@ -47,6 +52,11 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         }
     }
 
+    /**
+     * Class constructor
+     *
+     * @param recipeIngredientsList
+     */
     public RecipeIngredientsAdapter(List<Ingredient> recipeIngredientsList) {
         this.recipeIngredientsList = recipeIngredientsList;
     }
