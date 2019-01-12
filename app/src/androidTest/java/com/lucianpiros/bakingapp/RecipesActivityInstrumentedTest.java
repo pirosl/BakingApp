@@ -48,7 +48,7 @@ public class RecipesActivityInstrumentedTest {
     public void clickOnRecipe_showsRecipeDetails() {
 
         onView(withId(R.id.recipiesrecyclerview))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         onView(withId(R.id.sliding_tabs))
                 .check(matches(isDisplayed()));
