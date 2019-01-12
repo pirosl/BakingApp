@@ -13,4 +13,9 @@ public interface OnItemSelectedListener {
      * When an item has been selected - notify up.
      */
     void onItemSelected(int itemIdx);
+
+    /**
+     * When initial item is selected - used in master details
+     */
+    void onInitialItemSelected();
 }

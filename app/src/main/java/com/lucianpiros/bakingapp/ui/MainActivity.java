@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lucianpiros.bakingapp.R;
+import com.lucianpiros.bakingapp.data.RecipiesHolder;
 import com.lucianpiros.bakingapp.data.retrofit.RecipesRetrieveService;
 
 /**
@@ -41,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             mMasterDetailFlow = false;
         }
 
-        RecipiesFragment articleFrag = (RecipiesFragment)
+        RecipiesFragment recipiesFrag = (RecipiesFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_recipieslist);
-        RecipesRetrieveService recipesRetrieveService = new RecipesRetrieveService(articleFrag);
+        RecipesRetrieveService recipesRetrieveService = new RecipesRetrieveService(recipiesFrag);
         recipesRetrieveService.run();
     }
 
@@ -66,6 +67,23 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             Intent intent = new Intent(this, RecipeActivity.class);
             intent.putExtra(getResources().getString(R.string.activity_extra_param), itemIdx);
             startActivity(intent);
+        }
+    }
+
+    public void onInitialItemSelected() {
+        if (mMasterDetailFlow) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle arguments = new Bundle();
+            arguments.putInt(RecipeFragment.RECIPE_IDX, RecipiesHolder.getInstance().getRecipiesList().get(0).getId());
+
+            RecipeFragment fragment = new RecipeFragment();
+            fragment.setArguments(arguments);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.recipe_fragment, fragment)
+                    .commit();
         }
     }
 }

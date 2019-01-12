@@ -56,8 +56,14 @@ public class RecipiesFragment extends Fragment implements DataUpdateListener, On
         ((OnItemSelectedListener)getActivity()).onItemSelected(recipe.getId());
     }
 
+    public void onInitialItemSelected() {
+        // do nothing here
+    }
+
     public void updateData() {
         RecipiesAdapter recipiesAdapter = new RecipiesAdapter(RecipiesHolder.getInstance().getRecipiesList(), this);
         recipiesListView.setAdapter(recipiesAdapter);
+
+        ((OnItemSelectedListener)getActivity()).onInitialItemSelected();
     }
 }
