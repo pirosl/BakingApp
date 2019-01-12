@@ -73,10 +73,10 @@ public class RecipiesAdapter extends RecyclerView.Adapter<RecipiesAdapter.ViewHo
 
         if(recipe.getImage().isEmpty()) {
             if(recipe.getId() % 2 == 0) {
-                holder.recipeImageIV.setImageResource(R.drawable.placeholder_1);
+                holder.recipeImageIV.setImageResource(R.drawable.placeholder_2);
             }
             else {
-                holder.recipeImageIV.setImageResource(R.drawable.placeholder_2);
+                holder.recipeImageIV.setImageResource(R.drawable.placeholder_1);
             }
         }
     }
