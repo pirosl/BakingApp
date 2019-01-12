@@ -3,14 +3,18 @@ package com.lucianpiros.bakingapp.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.RecipiesHolder;
+import com.lucianpiros.bakingapp.data.retrofit.pojo.Ingredient;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Recipe;
 import com.lucianpiros.bakingapp.ui.MainActivity;
+
+import java.util.List;
 
 /**
  * Implementation of App Widget functionality.
@@ -20,30 +24,30 @@ import com.lucianpiros.bakingapp.ui.MainActivity;
  */
 public class RecipeAppWidget extends AppWidgetProvider {
 
+    private static List<Ingredient> recipeIngredientsList;
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int recipeIdx, int appWidgetId) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_app_widget);
 
+        Intent intent = new Intent(context, RecipeAppWidgetIngredientsListViewsService.class);
+        views.setRemoteAdapter(R.id.widgeRecipeIngredients, intent);
+
         // populate Remoteviews object
         Recipe recipe = RecipiesHolder.getInstance().getRecipeAtPosition(recipeIdx);
 
-        //views.setTextViewText(R.id.recipe_name, recipe.getName());
+        views.setTextViewText(R.id.widgetRecipeName, recipe.getName());
+        int recipeId = recipe.getId();
+        recipeIngredientsList = RecipiesHolder.getInstance().getRecipeIngredients(recipeId);
 
-        if(recipe.getImage().isEmpty()) {
-            if(recipe.getId() % 2 == 0) {
-                views.setImageViewResource(R.id.recipe_image, R.drawable.placeholder_1);
-            }
-            else {
-                views.setImageViewResource(R.id.recipe_image, R.drawable.placeholder_2);;
-            }
-        }
+        /*
         // Create an Intent to launch MainActivity when clicked
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-        views.setOnClickPendingIntent(R.id.recipe_image, pendingIntent);
+*/
+  //      views.setOnClickPendingIntent(R.id.recipe_image, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -51,7 +55,7 @@ public class RecipeAppWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
+        //Start the intent service update widget action, the service takes care of updating the widgets UI
         RecipeUpdateWidgetService.startActionUpdateRecipeWidgets(context);
     }
 
@@ -79,5 +83,8 @@ public class RecipeAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
     }
-}
 
+    public static List<Ingredient> getRecipeIngredientsList() {
+        return recipeIngredientsList;
+    }
+}

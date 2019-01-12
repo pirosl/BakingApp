@@ -38,6 +38,9 @@
 
         <service android:name=".widget.RecipeUpdateWidgetService" />
 
+        <service android:name=".widget.RecipeAppWidgetIngredientsListViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>

@@ -15,7 +15,10 @@ import java.util.Random;
 
 public class RecipeUpdateWidgetService extends IntentService {
 
+    public static final String ACTION_UPDATE_RECIPE_INGREDIENTS_LIST = "com.lucianpiros.bakingapp.widget.update_recipe_ingredients";
+
     public static final String ACTION_UPDATE_RECIPE_WIDGETS = "com.lucianpiros.bakingapp.widget.update_recipe_widget";
+    public static final String  RECIPE_ID = "com.lucianpiros.bakingapp.widget.recipe_id";
 
     public RecipeUpdateWidgetService() {
         super("RecipeUpdateWidgetService");
@@ -50,13 +53,18 @@ public class RecipeUpdateWidgetService extends IntentService {
     private void handleActionUpdateRecipeWidgets() {
         // pick a random recipe
         Random random = new Random();
-        int idx = random.nextInt();
+        int idx = random.nextInt(Integer.MAX_VALUE);
 
         List<Recipe> recipes = RecipiesHolder.getInstance().getRecipiesList();
         idx = idx % recipes.size();
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeAppWidget.class));
-        RecipeAppWidget.updatePlantWidgets(this, appWidgetManager, recipes.get(idx).getId() ,appWidgetIds);
+        RecipeAppWidget.updatePlantWidgets(this, appWidgetManager, idx ,appWidgetIds);
+
+        Intent intent = new Intent(ACTION_UPDATE_RECIPE_INGREDIENTS_LIST);
+        intent.setAction(ACTION_UPDATE_RECIPE_INGREDIENTS_LIST);
+        intent.putExtra(RECIPE_ID, idx);
+        sendBroadcast(intent);
     }
 }
