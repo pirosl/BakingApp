@@ -21,9 +21,11 @@ public class RecipesRetrieveService {
     private final static String RECIPIES_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/";
 
     private DataUpdateListener dataUpdateListener;
+    private RetrofitIdlingResource idlingResource;
 
-    public RecipesRetrieveService(DataUpdateListener dataUpdateListener) {
+    public RecipesRetrieveService(DataUpdateListener dataUpdateListener, RetrofitIdlingResource idlingResource) {
         this.dataUpdateListener = dataUpdateListener;
+        this.idlingResource = idlingResource;
     }
 
     public void run() {
@@ -42,6 +44,9 @@ public class RecipesRetrieveService {
 
                 RecipiesHolder.getInstance().storeRecipies(recipiesList);
                 dataUpdateListener.updateData();
+                if(idlingResource != null) {
+                    idlingResource.setIdleState(false);
+                }
             }
 
             @Override
@@ -50,7 +55,9 @@ public class RecipesRetrieveService {
 
                 RecipiesHolder.getInstance().storeRecipies(recipiesList);
                 dataUpdateListener.updateData();
-                
+                if(idlingResource != null) {
+                    idlingResource.setIdleState(false);
+                }
                 call.cancel();
             }
         });

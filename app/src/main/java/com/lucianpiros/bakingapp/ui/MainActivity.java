@@ -2,12 +2,17 @@ package com.lucianpiros.bakingapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.RecipiesHolder;
 import com.lucianpiros.bakingapp.data.retrofit.RecipesRetrieveService;
+import com.lucianpiros.bakingapp.data.retrofit.RetrofitIdlingResource;
 
 /**
  * Main activity class
@@ -22,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
 
     private boolean mMasterDetailFlow;
+
+    @Nullable
+    RetrofitIdlingResource idlingResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
 
         RecipiesFragment recipiesFrag = (RecipiesFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_recipieslist);
-        RecipesRetrieveService recipesRetrieveService = new RecipesRetrieveService(recipiesFrag);
+        RecipesRetrieveService recipesRetrieveService = new RecipesRetrieveService(recipiesFrag, idlingResource);
         recipesRetrieveService.run();
     }
 
@@ -90,5 +98,14 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
                 findViewById(R.id.recipe_fragment).setVisibility(View.GONE);
             }
         }
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (idlingResource == null) {
+            idlingResource = new RetrofitIdlingResource();
+        }
+        return idlingResource;
     }
 }
