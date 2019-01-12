@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.retrofit.pojo.Ingredient;
+import com.lucianpiros.bakingapp.util.ValuesUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Recipe ingredient adapter. Used in RecipieIngredientsFragment class
@@ -27,18 +26,6 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
 
     // Collection of recipe ingredients to be displayed through this adapted
     private List<Ingredient> recipeIngredientsList;
-
-    // Map used to beatify recipe ingredients display
-    private static final Map<String, String> meassureMap;
-    static
-    {
-        meassureMap = new HashMap<>();
-        meassureMap.put("G", "grams");
-        meassureMap.put("UNIT", "");
-        meassureMap.put("TSP", "tea spoon");
-        meassureMap.put("TBLSP", "table spoon");
-        meassureMap.put("CUP", "cup");
-    }
 
     /**
      * ViewHolder implementation
@@ -83,8 +70,8 @@ public class RecipeIngredientsAdapter extends RecyclerView.Adapter<RecipeIngredi
         holder.recipeIngredientNameTV.append(" ");
 
         Spannable measure = new SpannableString("");
-        if(meassureMap.containsKey(ingredient.getMeasure())) {
-            measure = new SpannableString(meassureMap.get(ingredient.getMeasure()));
+        if(ValuesUtil.meassureMap.containsKey(ingredient.getMeasure())) {
+            measure = new SpannableString(ValuesUtil.meassureMap.get(ingredient.getMeasure()));
         };
         measure.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.textColor)), 0, measure.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.recipeIngredientNameTV.append(measure);
