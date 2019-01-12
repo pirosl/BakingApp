@@ -46,6 +46,11 @@ public class RecipesRetrieveService {
 
             @Override
             public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
+                ArrayList<Recipe> recipiesList = new ArrayList<>();
+
+                RecipiesHolder.getInstance().storeRecipies(recipiesList);
+                dataUpdateListener.updateData();
+                
                 call.cancel();
             }
         });

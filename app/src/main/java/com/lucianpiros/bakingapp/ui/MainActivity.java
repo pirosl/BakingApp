@@ -3,6 +3,7 @@ package com.lucianpiros.bakingapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.lucianpiros.bakingapp.R;
 import com.lucianpiros.bakingapp.data.RecipiesHolder;
@@ -75,15 +76,19 @@ public class MainActivity extends AppCompatActivity implements OnItemSelectedLis
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putInt(RecipeFragment.RECIPE_IDX, RecipiesHolder.getInstance().getRecipiesList().get(0).getId());
-
             RecipeFragment fragment = new RecipeFragment();
-            fragment.setArguments(arguments);
 
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.recipe_fragment, fragment)
-                    .commit();
+            if(RecipiesHolder.getInstance().getRecipiesList().size() > 0) {
+                Bundle arguments = new Bundle();
+                arguments.putInt(RecipeFragment.RECIPE_IDX, RecipiesHolder.getInstance().getRecipiesList().get(0).getId());
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.recipe_fragment, fragment)
+                        .commit();
+            }
+            else {
+                findViewById(R.id.recipe_fragment).setVisibility(View.GONE);
+            }
         }
     }
 }

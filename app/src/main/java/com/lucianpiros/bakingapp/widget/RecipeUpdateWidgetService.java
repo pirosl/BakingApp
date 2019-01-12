@@ -51,11 +51,18 @@ public class RecipeUpdateWidgetService extends IntentService {
      * Handle action UpdateRecipeWidgets in the provided background thread
      */
     private void handleActionUpdateRecipeWidgets() {
+        List<Recipe> recipes = RecipiesHolder.getInstance().getRecipiesList();
+
+        // if recipies list is empty return
+        if(recipes.size() == 0) {
+            return;
+        }
+
         // pick a random recipe
         Random random = new Random();
         int idx = random.nextInt(Integer.MAX_VALUE);
 
-        List<Recipe> recipes = RecipiesHolder.getInstance().getRecipiesList();
+
         idx = idx % recipes.size();
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
