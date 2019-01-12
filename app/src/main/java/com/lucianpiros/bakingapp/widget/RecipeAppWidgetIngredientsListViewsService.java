@@ -2,9 +2,6 @@ package com.lucianpiros.bakingapp.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
