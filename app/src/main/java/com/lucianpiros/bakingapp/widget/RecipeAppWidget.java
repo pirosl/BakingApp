@@ -42,12 +42,11 @@ public class RecipeAppWidget extends AppWidgetProvider {
         int recipeId = recipe.getId();
         recipeIngredientsList = RecipiesHolder.getInstance().getRecipeIngredients(recipeId);
 
-        /*
         // Create an Intent to launch MainActivity when clicked
-        Intent intent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-*/
-  //      views.setOnClickPendingIntent(R.id.recipe_image, pendingIntent);
+        Intent activityIntent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, activityIntent, 0);
+
+        views.setOnClickPendingIntent(R.id.app_widget, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
